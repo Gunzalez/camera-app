@@ -28,6 +28,14 @@ html, body{
     bottom: 30px;
     left: calc(50% - 100px);
 }
+
+#actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex: 1;
+}
+
 .taken{
     height: 100px!important;
     width: 100px!important;
