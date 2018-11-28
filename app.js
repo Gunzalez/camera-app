@@ -6,7 +6,8 @@ const cameraView = document.querySelector("#camera--view"),
     cameraOutput = document.querySelector("#camera--output"),
     cameraSensor = document.querySelector("#camera--sensor"),
     cameraTrigger = document.querySelector("#camera--trigger"),
-    cameraActions = document.querySelector("#camera-actions");
+    cameraActions = document.querySelector("#camera-actions"),
+    actionsClear = document.querySelector("#clear--photo");
 
 // Access the device camera and stream to cameraView
 function cameraStart() {
@@ -28,7 +29,13 @@ function showActionsHideTrigger(){
 function hideActionsShowTrigger(){
     cameraActions.classList.add('hidden');
     cameraTrigger.classList.remove('hidden');
+    cameraOutput.src = '#';
+    cameraOutput.classList.remove("taken");
 }
+
+actionsClear.onclick = function(){
+    hideActionsShowTrigger();
+};
 
 // Take a picture when cameraTrigger is tapped
 cameraTrigger.onclick = function() {
