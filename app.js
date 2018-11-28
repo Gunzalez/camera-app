@@ -7,7 +7,9 @@ const cameraView = document.querySelector("#camera--view"),
     cameraSensor = document.querySelector("#camera--sensor"),
     cameraTrigger = document.querySelector("#camera--trigger"),
     cameraActions = document.querySelector("#camera-actions"),
-    actionsClear = document.querySelector("#clear--photo");
+    actionsClear = document.querySelector("#clear--photo"),
+    actionsSend = document.querySelector("#send--photo"),
+    sendingSpinner = document.querySelector("#send-spinner");
 
 // Access the device camera and stream to cameraView
 function cameraStart() {
@@ -29,12 +31,20 @@ function showActionsHideTrigger(){
 function hideActionsShowTrigger(){
     cameraActions.classList.add('hidden');
     cameraTrigger.classList.remove('hidden');
-    cameraOutput.src = '#';
+    cameraOutput.src = '//:0';
     cameraOutput.classList.remove("taken");
 }
 
 actionsClear.onclick = function(){
     hideActionsShowTrigger();
+};
+
+actionsSend.onclick = function(){
+    sendingSpinner.classList.remove('hidden');
+    setTimeout(function(){
+        hideActionsShowTrigger();
+        sendingSpinner.classList.add('hidden');
+    }, 1000);
 };
 
 // Take a picture when cameraTrigger is tapped
@@ -43,6 +53,7 @@ cameraTrigger.onclick = function() {
     cameraSensor.height = cameraView.videoHeight;
     cameraSensor.getContext("2d").drawImage(cameraView, 0, 0);
     cameraOutput.src = cameraSensor.toDataURL("image/webp");
+
     cameraOutput.classList.add("taken");
     showActionsHideTrigger()
 };
