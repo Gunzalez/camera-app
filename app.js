@@ -44,7 +44,7 @@ actionsSend.onclick = function(){
     setTimeout(function(){
         hideActionsShowTrigger();
         sendingSpinner.classList.add('hidden');
-    }, 1000);
+    }, 3000);
 };
 
 // Take a picture when cameraTrigger is tapped
